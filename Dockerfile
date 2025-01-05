@@ -12,8 +12,6 @@ FROM devkitpro/devkita64:${DEVKITA64_VERSION}
 ARG RUSTUP_VERSION=1.27.1
 ARG RUST_VERSION
 
-LABEL org.opencontainers.image.source=https://github.com/LNSD/docker-devkita64-rust
-
 # Code borrowed with modifications from the official Rust Docker image
 # Source: https://github.com/rust-lang/docker-rust/blob/fab440ae8329bc7bf680deb26e8679e7028c0536/Dockerfile-slim.template
 ENV RUSTUP_HOME=/usr/local/rustup \

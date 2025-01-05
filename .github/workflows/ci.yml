@@ -35,10 +35,9 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository_owner }}/devkita64-rust
           tags: |
-            type=ref,event=tag
-            type=sha
-            type=raw,${{ env.DEVKITA64_VERSION }}-${{ env.RUST_VERSION }}
-
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=${{ env.DEVKITA64_VERSION }}-${{ env.RUST_VERSION }}
+            type=sha,prefix=${{ env.DEVKITA64_VERSION }}-${{ env.RUST_VERSION }}-
 
       - uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3
         with:
@@ -56,6 +55,10 @@ jobs:
             RUST_VERSION=${{ env.RUST_VERSION }}
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          labels: |
+            ${{ steps.meta.outputs.labels }}
+            toolchain.devkita64.version=${{ env.DEVKITA64_VERSION }}
+            toolchain.rustc.version=${{ env.RUST_VERSION }}
+          annotations: ${{ steps.meta.outputs.annotations }}
           push: ${{ github.event_name != 'pull_request' }}
           pull: true
