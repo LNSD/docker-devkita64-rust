@@ -14,12 +14,8 @@ permissions:
   contents: read
   packages: write
 
-defaults:
-  run:
-    shell: 'bash'
-
 env:
-  # renovate: datasource=docker depName=devkitpro/devkita64
+  # renovate: datasource=docker depName=devkitpro/devkita64 versioning=loose
   DEVKITA64_VERSION: 20241023
   # renovate: datasource=github-tags depName=rust-lang/rustup
   RUSTUP_VERSION: 1.27.1
