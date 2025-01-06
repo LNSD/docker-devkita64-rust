@@ -8,7 +8,7 @@
   ],
   timezone: 'Europe/Madrid',
   schedule: [
-    '0 0 1,15 * *', // At 00:00 on day-of-month 1 and 15. https://crontab.guru/#0_0_1,15_*_*
+    '* 0 1,15 * *', // At 00:00 on day-of-month 1 and 15. https://crontab.guru/#*_0_1,15_*_*
   ],
   configMigration: true,
   rebaseWhen: 'behind-base-branch',
