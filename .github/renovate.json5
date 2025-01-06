@@ -1,0 +1,42 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+    ':semanticCommits',
+    ':semanticCommitTypeAll(chore)',
+    'helpers:pinGitHubActionDigests',
+  ],
+  timezone: 'Europe/Madrid',
+  schedule: [
+    '0 0 1,15 * *', // At 00:00 on day-of-month 1 and 15. https://crontab.guru/#0_0_1,15_*_*
+  ],
+  configMigration: true,
+  rebaseWhen: 'behind-base-branch',
+  lockFileMaintenance: {
+    enabled: true,
+    automerge: true,
+    automergeType: 'branch',
+  },
+  packageRules: [
+    {
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+      ],
+      matchCurrentVersion: '!/^0/',
+      automerge: true,
+    },
+  ],
+  customManagers: [
+    {
+      customType: 'regex',
+      fileMatch: [
+        '(^|/)(workflow-templates|\\.(?:github|gitea|forgejo)/(?:workflows|actions))/.+\\.ya?ml$'
+      ],
+      matchStrings: [
+        'renovate:\\sdatasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_VERSION:\\s?(?<currentValue>.*)\\s'
+      ],
+      versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}'
+    },
+  ],
+}

@@ -18,14 +18,17 @@ defaults:
   run:
     shell: 'bash'
 
+env:
+  # renovate: datasource=docker depName=devkitpro/devkita64
+  DEVKITA64_VERSION: 20241023
+  # renovate: datasource=github-tags depName=rust-lang/rustup
+  RUSTUP_VERSION: 1.27.1
+  # renovate: datasource=github-releases depName=rust-lang/rust
+  RUST_VERSION: 1.83.0
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      # TODO Add renovatebot to keep these up to date
-      DEVKITA64_VERSION: 20241023
-      RUSTUP_VERSION: 1.27.1
-      RUST_VERSION: 1.83.0
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
       - uses: docker/setup-buildx-action@c47758b77c9736f4b2ef4073d4d51994fabfe349 # v3
