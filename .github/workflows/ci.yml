@@ -20,7 +20,7 @@ env:
   # renovate: datasource=github-tags depName=rust-lang/rustup
   RUSTUP_VERSION: 1.27.1
   # renovate: datasource=github-releases depName=rust-lang/rust
-  RUST_VERSION: 1.83.0
+  RUST_VERSION: 1.88.0
 
 jobs:
   build:
